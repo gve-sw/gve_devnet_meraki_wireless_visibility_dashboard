@@ -1,0 +1,78 @@
+<!--Charts: Overview of line chart UI components-->
+
+{% extends "masterPage.html" %}
+
+{% block content %}
+
+
+<div class="row">
+
+    <!-- Sidebar -->
+     <!-- Left Rail -->
+     {% include "menu.html" %}
+
+    <div class="col-12 col-lg-9 col-xl-10">
+        <div class="section">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="panel panel--loose panel--raised base-margin-bottom">
+                        <div class="row">
+                            <div class="col-md-2 base-margin-bottom">
+                                <div class="form-group">
+                                    <div class="form-group__text">
+                                        <label for="start-date">START DATE</label>
+                                        <input id="start-date" type="date" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 base-margin-bottom">
+                                <div class="form-group">
+                                    <div class="form-group__text">
+                                        <label for="end-date">END DATE</label>
+                                        <input id="end-date" type="date" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-2 text-center base-margin-top">
+                                <input id="refresh-btn" class="btn btn-primary" type="button" value="Submit" onclick="get_ap_uptime()">
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-4 base-margin-top">
+                                <span id="get_ap_uptime_error"></span>
+                                <input id="download-btn" class="btn btn-primary" type="button" value="Download" onclick="download_records()">
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-2 base-margin-top hidden" id="loader">
+                                <div class="loader loader--small" aria-label="Loading, please wait...">
+                                    <div class="wrapper">
+                                        <div class="wheel"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-md-12">
+                            <span>*System start date is {{system_start}}. Start Date must be greater than system start date.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="responsive-table">
+                        <table class="table table--lined table--selectable table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">AP Name</th>
+                                    <th class="text-center">MAC Address</th>
+                                    <th class="text-center">Outage Occurence</th>
+                                    <th class="text-center">Uptime Percentage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

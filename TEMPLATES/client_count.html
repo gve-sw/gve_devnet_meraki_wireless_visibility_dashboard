@@ -1,0 +1,49 @@
+<!--Charts: Overview of line chart UI components-->
+
+{% extends "masterPage.html" %}
+
+{% block content %}
+
+
+<div class="row">
+
+    <!-- Sidebar -->
+     <!-- Left Rail -->
+     {% include "menu.html" %}
+
+    <div class="col-12 col-lg-9 col-xl-10">
+        <div class="section">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="responsive-table">
+                        <table class="table table--lined table--selectable table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">AP Name</th>
+                                    <th class="text-center">MAC Address</th>
+                                    <th class="text-center">Client Count</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ap_clients in aps_clients %}
+                                    <tr>
+                                        <td class="text-center">{{ap_clients.name}}</td>
+                                        <td class="text-center">{{ap_clients.mac}}</td>
+                                        <td class="text-center">
+                                            {% if ap_clients.alert %}
+                                                <span class="badge badge--warning">{{ap_clients.count}}</span>
+                                            {% else %}
+                                                <span class="badge badge--success">{{ap_clients.count}}</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

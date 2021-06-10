@@ -1,0 +1,77 @@
+<!--Charts: Overview of line chart UI components-->
+
+{% extends "masterPage.html" %}
+
+{% block content %}
+
+
+<div class="row">
+
+    <!-- Sidebar -->
+     <!-- Left Rail -->
+     {% include "menu.html" %}
+
+    <div class="col-12 col-lg-9 col-xl-10">
+        <div class="section">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="panel panel--loose panel--raised base-margin-bottom">
+                        <div class="row">
+                            <div class="col-md-2 base-margin-bottom">
+                                <div class="form-group">
+                                    <div class="form-group__text">
+                                        <label for="client-name">Client Name</label>
+                                        <input id="client-name" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 base-margin-bottom">
+                                <div class="form-group">
+                                    <div class="form-group__text">
+                                        <label for="client-mac">Client MAC</label>
+                                        <input id="client-mac" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-2 text-center base-margin-top">
+                                <input id="add-vip-btn" class="btn btn-primary" type="button" value="Add" onclick="add_vip_client()">
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-4 base-margin-top">
+                                <span id="add_vip_client_error"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="responsive-table">
+                        <table class="table table--lined table--selectable table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center">Client Name</th>
+                                    <th class="text-center">MAC Address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for vip_client in vip_clients %}
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn--circle btn--small btn--danger small-margin-left" onclick="delete_vip_client('{{vip_client.mac}}', this)">
+                                                <span class="icon-remove"></span>
+                                            </button>
+                                        </td>
+                                        <td class="text-center">{{vip_client.name}}</td>
+                                        <td class="text-center">{{vip_client.mac}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

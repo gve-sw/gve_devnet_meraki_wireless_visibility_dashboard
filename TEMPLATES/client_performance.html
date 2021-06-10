@@ -1,0 +1,85 @@
+<!--Charts: Overview of line chart UI components-->
+
+{% extends "masterPage.html" %}
+
+{% block content %}
+
+
+<div class="row">
+
+    <!-- Sidebar -->
+     <!-- Left Rail -->
+     {% include "menu.html" %}
+
+    <div class="col-12 col-lg-9 col-xl-10">
+        <div class="section">
+            <div class="row">
+                <div class="col-xl-12">
+                  <div class="responsive-table">
+                      <table class="table table--lined table--selectable table">
+                          <thead>
+                              <tr>
+                                  <th class="text-center">Client Name</th>
+                                  <th class="text-center">MAC Address</th>
+                                  <th class="text-center">IP Address</th>
+                                  <th class="text-center">Connected AP</th>
+                                  <th class="text-center">SSID</th>
+                                  <th class="text-center">SNR</th>
+                                  <th class="text-center">RSSI</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td colspan="7" class="tdivider">VIP Clients</td>
+                              </tr>
+                              {% for client in clients %}
+                                  {% if client.vip %}
+                                      <tr>
+                                          <td class="text-center">{{client.name}}</td>
+                                          <td class="text-center">{{client.mac}}</td>
+                                          <td class="text-center">{{client.ip}}</td>
+                                          <td class="text-center">{{client.ap}}</td>
+                                          <td class="text-center">{{client.ssid}}</td>
+                                          <td class="text-center">{{client.snr}}</td>
+                                          <td class="text-center">
+                                              {% if client.alert %}
+                                                  <span class="badge badge--warning">{{client.rssi}}</span>
+                                              {% else %}
+                                                  <span class="badge badge--success">{{client.rssi}}</span>
+                                              {% endif %}
+                                          </td>
+                                      </tr>
+                                  {% endif %}
+                              {% endfor %}
+                              <tr><td colspan="7"></td></tr>
+                              <tr>
+                                  <td colspan="7" class="tdivider">Other Clients</td>
+                              </tr>
+                              {% for client in clients %}
+                                  {% if not client.vip %}
+                                      <tr>
+                                          <td class="text-center">{{client.name}}</td>
+                                          <td class="text-center">{{client.mac}}</td>
+                                          <td class="text-center">{{client.ip}}</td>
+                                          <td class="text-center">{{client.ap}}</td>
+                                          <td class="text-center">{{client.ssid}}</td>
+                                          <td class="text-center">{{client.snr}}</td>
+                                          <td class="text-center">
+                                              {% if client.alert %}
+                                                  <span class="badge badge--warning">{{client.rssi}}</span>
+                                              {% else %}
+                                                  <span class="badge badge--success">{{client.rssi}}</span>
+                                              {% endif %}
+                                          </td>
+                                      </tr>
+                                  {% endif %}
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

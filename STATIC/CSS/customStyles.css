@@ -1,0 +1,18 @@
+.selected a{
+    border-right-color: lightgreen !important;
+    background-color: black !important;
+}
+
+.hidden{
+    display: none !important;
+}
+
+#get_ap_uptime_error, #add_vip_client_error{
+    color: red;
+}
+
+.tdivider{
+    font-style: italic;
+    font-weight: bold;
+    color: darkgreen;
+}
